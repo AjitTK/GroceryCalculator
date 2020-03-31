@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Grocery calculator</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rangeslider.js/2.3.3/rangeslider.min.css">	
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rangeslider.js/2.3.3/rangeslider.min.css.map">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/rangeslider.js/2.3.3/rangeslider.min.js"></script>
+  
+  <!--Plugin JavaScript file-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script>
+  <!--Plugin CSS file with desired skin-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css"/>
+
+  <style>
+  body{
+	background-color:black;
+	color:#fff;
+	    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  }
+  
+  .form-control{
+		color: #f9f9fa;
+		background-color: #0c0b0b;
+	}
+  
+  .jumbotron{
+	background-color:black;
+	color:#fff;
+	margin-bottom: 0px !important;
+  }
+  
+  .irs--flat .irs-bar{
+	background-color: #14c55f;
+  }
+  .irs--big .irs-grid-text {
+    color: #ffffff;
+  }
+  .irs--big .irs-bar {
+		top: 33px;
+		height: 12px;
+		background-color: #69e297;
+		border: 1px solid #09661f;
+		background: linear-gradient(to bottom, #ffffff 0%, #4df009 30%, #3ce487 100%);
+		box-shadow: inset 0 0 1px 1px rgba(255,255,255,0.5);
+	}
+	
+	.cal{
+	    background-color: #f1f6f3;
+		border: 1px solid #0a0c0a;
+		background: linear-gradient(to bottom, #1cb9e2 0%, #2da0e4 30%, #3586bf 100%);
+		box-shadow: inset 0 0 1px 1px rgba(255,255,255,0.5);
+		color:#fff;		
+		font-size: 1.25rem;
+		}
+		
+	.result {
+	    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+		padding: 20px 20px 20px 20px;
+	}	
+	
+	
+  </style>
+  <script>
+  $(document).ready(function(){
+  
+  $(".result").hide();
+  
+   $("#person").ionRangeSlider({
+        type: "single",
+        min: 1,
+        max: 16,
+		skin: "big",
+        grid: true
+    });
+  
+   $("#wheat").ionRangeSlider({
+        type: "single",
+        min: 0,
+        max: 200,
+		skin: "big",
+		postfix: "  Kg",
+        grid: true
+    });
+	
+	$("#rice").ionRangeSlider({
+        type: "single",
+        min: 0,
+        max: 200,
+		skin: "big",
+		postfix: "  Kg",
+        grid: true
+    });
+	
+	$("#pulses").ionRangeSlider({
+        type: "single",
+        min: 0,
+        max: 20,
+		skin: "big",
+		postfix: "  Kg",
+		step:0.25,
+        from: 0,
+        to: 30,
+        grid: true
+    });
+	
+	
+	$("#rootVeggi").ionRangeSlider({
+        type: "single",
+        min: 0,
+        max: 30,
+		skin: "big",
+		postfix: "  Kg",
+        from: 0,
+        to: 30,
+        grid: true
+    });
+	
+	$("#sugar").ionRangeSlider({
+        type: "single",
+        min: 0,
+        max: 20,
+		skin: "big",
+		postfix: "  Kg",
+        from: 0,
+        to: 20,
+        grid: true
+    });
+	
+	});
+	
+	var data = {
+		"andhra":{
+			"wheat":505,
+			"rice":505,
+			"pulses":24,
+			"vegitable":8,
+			"rootVeggi":27,
+			"sugar":9
+		},
+		"bihar":{
+			"wheat":500,
+			"rice":500,
+			"pulses":37,
+			"vegitable":26,
+			"rootVeggi":107,
+			"sugar":8
+		},
+		"gujrat":{
+			"wheat":362,
+			"rice":362,
+			"pulses":28,
+			"vegitable":4,
+			"rootVeggi":39,
+			"sugar":33
+		},
+		"haryana":{
+			"wheat":534,
+			"rice":534,
+			"pulses":38,
+			"vegitable":33,
+			"rootVeggi":52,
+			"sugar":60
+		},
+		"jandk":{
+			"wheat":523,
+			"rice":523,
+			"pulses":33,
+			"vegitable":58,
+			"rootVeggi":44,
+			"sugar":7
+		},
+		"karnataka":{
+			"wheat":566,
+			"rice":566,
+			"pulses":42,
+			"vegitable":8,
+			"rootVeggi":22,
+			"sugar":16
+		},
+		"kerala":{
+			"wheat":302,
+			"rice":302,
+			"pulses":12,
+			"vegitable":2,
+			"rootVeggi":12,
+			"sugar":17
+		},
+		"mp":{
+			"wheat":407,
+			"rice":407,
+			"pulses":43,
+			"vegitable":5,
+			"rootVeggi":34,
+			"sugar":19
+		},
+		"maharashtra":{
+			"wheat":420,
+			"rice":420,
+			"pulses":34,
+			"vegitable":10,
+			"rootVeggi":16,
+			"sugar":27
+		},
+		"orissa":{
+			"wheat":537,
+			"rice":537,
+			"pulses":55,
+			"vegitable":26,
+			"rootVeggi":53,
+			"sugar":6
+		},
+		"punjab":{
+			"wheat":494,
+			"rice":494,
+			"pulses":31,
+			"vegitable":57,
+			"rootVeggi":39,
+			"sugar":86
+		},
+		"rajasthan":{
+			"wheat":459,
+			"rice":459,
+			"pulses":50,
+			"vegitable":16,
+			"rootVeggi":5,
+			"sugar":22
+		},
+		"tamilnadu":{
+			"wheat":437,
+			"rice":437,
+			"pulses":33,
+			"vegitable":5,
+			"rootVeggi":41,
+			"sugar":17
+		},
+		"up":{
+			"wheat":433,
+			"rice":433,
+			"pulses":30,
+			"vegitable":10,
+			"rootVeggi":66,
+			"sugar":7
+		},
+		"bengal":{
+			"wheat":480,
+			"rice":480,
+			"pulses":19,
+			"vegitable":34,
+			"rootVeggi":82,
+			"sugar":11
+		}
+	}
+	
+	
+	
+	function calculate(){
+	   $(".result").show();
+	   $(".result").empty();
+		var stateVal = $("#state").val()+'';
+		var totalPeople = $("#person").val();
+		var rice = $("#rice").val()*1000;
+		var wheat = $("#wheat").val()*1000;
+		var pulses = $("#pulses").val()*1000;
+		var rootVeggi = $("#rootVeggi").val()*1000;
+		var sugar = $("#sugar").val()*1000;
+		console.log('state '+ stateVal);
+		console.log('data.state '+ JSON.stringify(data[stateVal]));
+		/*
+		var totalRice = Math.round((rice)/(data[stateVal].rice*totalPeople));
+		var totalWheat = Math.round(wheat/(data[stateVal].wheat*totalPeople));
+		var totalPulses = Math.round(pulses/(data[stateVal].pulses*totalPeople));
+		var totalRootVeggi = Math.round(rootVeggi/(data[stateVal].rootVeggi*totalPeople));
+		var totalSugar = Math.round(sugar/(data[stateVal].sugar*totalPeople));
+		*/
+		var totalRice = Math.round((rice)/(460*totalPeople));
+		var totalWheat = Math.round(wheat/(460*totalPeople));
+		var totalPulses = Math.round(pulses/(50*totalPeople));
+		var totalRootVeggi = Math.round(rootVeggi/(75*totalPeople));
+		var totalSugar = Math.round(sugar/(30*totalPeople));
+		
+		console.log('totalRice '+totalRice )
+		
+		console.log('totalWheat '+totalWheat )
+		console.log('totalPulses '+totalPulses )
+		console.log('totalRootVeggi '+totalRootVeggi )
+		console.log('totalSugar '+totalSugar )
+		
+		 $(".result").append("<h3 class=\"mb-0\"> For \""+totalPeople+"\" person your stock would be sufficient as below : </h3>");
+		$(".result").append("<p></p>");
+		$(".result").append("<p class=\"mb-0\">Rice ( चावल ) = "+totalRice+" days </p>");
+		$(".result").append("<p class=\"mb-0\">Wheat ( गेहूँ )  = "+totalWheat+" days</p>");
+		$(".result").append("<p class=\"mb-0\">Pulses( दाल )  = "+totalPulses+" days</p>");
+		$(".result").append("<p class=\"mb-0\">Root vegetables ( जड़  वाली सब्जियां ) = "+totalRootVeggi+" days</p>");
+		$(".result").append("<p class=\"mb-0\">Sugar jaggery (चीनी + गुड़  )  = "+totalSugar+" days</p>");
+		
+	}
+	
+	
+	
+</script>
+</head>
+<body>
+
+<div class="jumbotron text-center">
+  <h1>Grocery calculator</h1>
+  <p>The simple calculator to How may days your grocery will last ? </p> 
+</div>
+<div class="container">
+ <!--	<div class="row">
+	<div class="col-sm-12">
+	  <h3>State</h3>
+	  <p>
+		<select id="state" class="form-control">
+		<option selected value="andhra">Andhra Pradesh</option>
+		<option value="bihar">Bihar</option>
+		<option value="gujrat">Gujrat</option>
+		<option value="haryana">Haryana</option>
+		<option value="jandk">Jammu and Kashmir</option>
+		<option value="karnataka">Karnataka</option>
+		<option value="kerala">Kerala</option>
+		<option value="mp">Madhya Pradesh</option>
+		<option value="maharashtra">Maharashtra</option>
+		<option value="orissa">Orissa</option>
+		<option value="punjab">Punjab</option>
+		<option value="rajasthan">Rajasthan</option>
+		<option value="tamilnadu">Tamilnadu</option>
+		<option value="up">Utter Pradesh</option>
+		<option value="bengal">West Bengal</option>
+		<option value="Other">Other</option>
+      </select>	  
+	  </p>
+	</div>
+
+    </div>
+	--->
+	<div class="row">
+		<div class="col-sm-12">
+		<h5>Number of People </h5>
+		<p><input type="text" class="js-range-slider" name="person" id="person" value="" /></p>
+		</div>
+	</div>	
+	<div class="row">
+		<div class="col-sm-12">
+		<h5>Rice ( चावल ) </h5>
+		<p><input type="text" class="js-range-slider" name="rice" id="rice" value="" /></p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+		<h5>Wheat ( गेहूँ ) </h5>
+		<p><input type="text" class="js-range-slider" name="wheat" id="wheat" value="" /></p>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-sm-12">
+		<h5>Pulses( दाल ) </h5>
+		<p><input type="text" class="js-range-slider" name="pulses" id="pulses" value="" /></p>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-sm-12">
+		<h5>Root vegetables ( जड़  वाली सब्जियां )</h5>
+		<p><input type="text" class="js-range-slider" name="rootVeggi" id="rootVeggi"  value="" /></p>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-sm-12">
+		<h5>sugar jaggery (चीनी + गुड़  ) </h5>
+		<p><input type="text" class="js-range-slider" name="sugar" id="sugar" value="" /></p>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-sm-12">
+		
+		 <div class="result">
+		 </div>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-sm-12">
+		<p><input type="button" class="form-control cal" value="Calculate" onclick="calculate();" /></p>
+		</div>
+	</div>
+	
+  
+</div>
+
+</body>
+</html>
