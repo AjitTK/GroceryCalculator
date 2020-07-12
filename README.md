@@ -1,5 +1,5 @@
 # GroceryCalculator
-The simple calculator to calculate how many days your grocery will last ?
+The simple calculator can be used in COVID-19 situation to calculate how many days your grocery will last ?
 
 ```sh
 
